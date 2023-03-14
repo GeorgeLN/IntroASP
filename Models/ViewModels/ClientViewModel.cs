@@ -9,7 +9,6 @@ namespace IntroASP.Models.ViewModels
         [Display(Name = "Id")] //Permite cambiar el nombre del campo a manera de información extra.
         public int Id { get; set; }
 
-        [Required]
         [Display(Name = "Nombre")]
         public string Name { get; set; }
     }
