@@ -61,7 +61,7 @@ namespace IntroASP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(ClientViewModel model)
+        public async Task<IActionResult> Delete(ClientDeleteModel model)
         {
             try
             {
