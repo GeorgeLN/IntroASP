@@ -19,6 +19,8 @@ public partial class PubContext : DbContext
 
     public virtual DbSet<Brand> Brands { get; set; }
 
+    public virtual DbSet<Client> Clients { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=LAPTOP-T5GL3VOS; Database=Pub; Trusted_Connection=True; TrustServerCertificate=True");
@@ -43,6 +45,18 @@ public partial class PubContext : DbContext
         {
             entity.ToTable("Brand");
 
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Client>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_Clent");
+
+            entity.ToTable("Client");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .IsUnicode(false);

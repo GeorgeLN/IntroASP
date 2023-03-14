@@ -6,47 +6,46 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IntroASP.Controllers
 {
-    public class BeerController : Controller
+    public class ClientController : Controller
     {
         private readonly PubContext _context;
 
-        public BeerController(PubContext context)
+        public ClientController(PubContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var beers = _context.Beers.Include(b => b.Brand);
-            return View(await beers.ToListAsync());
+            return View(await _context.Clients.ToListAsync());
         }
 
         public IActionResult Create()
         {
-            ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name");
+            ViewData["Clients"] = new SelectList(_context.Clients, "Id", "Name");
             return View();
         }
 
         public IActionResult Delete()
         {
-            ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name");
+            ViewData["Clients"] = new SelectList(_context.Clients, "Id", "Name");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Permite esperar si o si la información del formulario que está en el mísmo dominio del sitio... Con eso se evita el envío de información por parte de otros sitios.
-        public async Task<IActionResult> Create(BeerViewModel model)
+        public async Task<IActionResult> Create(ClientViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var beer = new Beer()
+                    var client = new Client()
                     {
-                        Name = model.Name,
-                        BrandId = model.BrandId
+                        Id = model.Id,
+                        Name = model.Name
                     };
-                    _context.Add(beer); //Para agregar a la base de datos.
+                    _context.Add(client); //Para agregar a la base de datos.
                     await _context.SaveChangesAsync();
 
                     return RedirectToAction(nameof(Index));
@@ -56,14 +55,13 @@ namespace IntroASP.Controllers
             {
                 Console.WriteLine(error.Message);
             }
-            ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name", model.BrandId);
+            ViewData["Clients"] = new SelectList(_context.Clients, "Id", "Name", model.Id);
             return View();
         }
 
-        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task <IActionResult> Delete(ClientDeleteModel model)
+        public async Task<IActionResult> Delete(ClientViewModel model)
         {
             try
             {
@@ -87,6 +85,5 @@ namespace IntroASP.Controllers
             // ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name", model.Id);
             return View();
         }
-        */
     }
 }

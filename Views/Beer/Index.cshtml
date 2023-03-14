@@ -6,6 +6,10 @@
         <a asp-action="Create">Crear</a>
     </p>
 
+    <p>
+        <a asp-action="Delete">Eliminar</a>
+    </p>
+
     <table class="table">
         <thead>
             <tr>
@@ -20,7 +24,7 @@
             {
                 <tr>
                     <td>@Html.DisplayFor(m => beer.Name)</td>
-                    <td>@Html.DisplayFor(m => beer.Brand.Name)</td>
+                    <td>@Html.DisplayFor(m => beer.BeerId)</td>
                 </tr>
                 <tr>
 

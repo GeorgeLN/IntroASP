@@ -1,0 +1,34 @@
+﻿@model List<Client>
+
+    <h1>CLIENTES</h1>
+
+    <p>
+        <a asp-action="Create">Agregar cliente</a>
+    </p>
+
+    <p>
+        <a asp-action="Delete">Borrar cliente</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => client.Id)</td>
+                <td>@Html.DisplayFor(m => client.Name)</td>
+            </tr>
+            <tr>
+
+            </tr>
+        }
+        </tbody>
+    </table>

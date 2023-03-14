@@ -7,7 +7,7 @@ namespace IntroASP.Models.ViewModels
     {
         [Required] //Permite hacer que el campo en el formulario sea obligatorio.
         [Display(Name = "Nombre")] //Permite cambiar el nombre del campo a manera de información extra.
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Display(Name = "Marca")]
