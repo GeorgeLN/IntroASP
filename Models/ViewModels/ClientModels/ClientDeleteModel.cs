@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 
-namespace IntroASP.Models.ViewModels
+namespace IntroASP.Models.ViewModels.ClientModels
 {
     public class ClientDeleteModel
     {

@@ -1,5 +1,5 @@
 ﻿using IntroASP.Models;
-using IntroASP.Models.ViewModels;
+using IntroASP.Models.ViewModels.ClientModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
