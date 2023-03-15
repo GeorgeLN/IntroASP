@@ -29,7 +29,8 @@ namespace IntroASP.Controllers
 
         public IActionResult Delete()
         {
-            ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name");
+            //Parámetros -> SelectList( Fuente de información, información a obtener, información a mostrar)
+            ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name"); //Se utiliza cuando se va a crear un ComboBox y se necesitan visualizar los datos en dicho ComboBox
             return View();
         }
 
@@ -51,42 +52,40 @@ namespace IntroASP.Controllers
 
                     return RedirectToAction(nameof(Index));
                 }
+                ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name", model.BrandId);
             }
             catch (Exception error)
             {
                 Console.WriteLine(error.Message);
             }
-            ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name", model.BrandId);
+
             return View();
         }
 
-        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task <IActionResult> Delete(ClientDeleteModel model)
+        public async Task <IActionResult> Delete(BeerDeleteModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var client = new Client()
+                    var beer = new Beer()
                     {
-                        Id = model.Id
+                        BrandId = model.BrandId
                     };
-                    _context.Remove(client); //Para remover/eliminar de la base de datos
+                    _context.Remove(beer); //Para remover/eliminar de la base de datos
                     await _context.SaveChangesAsync();
 
                     return RedirectToAction(nameof(Index));
                 }
+                //ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name", model.Id);
             }
             catch (Exception error)
             {
                 Console.WriteLine(error.Message);
             }
-
-            // ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "Name", model.Id);
             return View();
         }
-        */
     }
 }
